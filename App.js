@@ -1,16 +1,22 @@
-import React from "react"; // импортируем react
-import { StyleSheet, Text, View } from "react-native"; // импортируем набор компонентов из react native
-import { Navbar } from "./src/Navbar"; //
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Navbar } from "./src/Navbar";
+import { AddTodo } from "./src/AddTodo";
 
 export default function App() {
-  // экспортируем компонент App
   return (
-    <View style={styles.container}>
+    <View>
       <Navbar title="Todo App" />
+      <View style={styles.container}>
+        <AddTodo />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    paddingHorizontal: 30,
+    paddingVertical: 20,
+  },
 });
