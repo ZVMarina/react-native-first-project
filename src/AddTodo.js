@@ -1,17 +1,16 @@
 import React from "react";
 import { View, StyleSheet, TextInput, Button } from "react-native";
 
-export const AddTodo = (onSubmit) => {
-
+export const AddTodo = ({ onSubmit }) => {
   // при событии onPress будет вызываться функция pressHandler
   const pressHandler = () => {
-    onSubmit('Test Todo')
-  }
+    onSubmit("Test Todo");
+  };
 
   return (
     <View style={styles.block}>
       <TextInput style={styles.input} />
-      <Button title="Добавить" onPress={pressHandler}/>
+      <Button title="Добавить" onPress={pressHandler} />
     </View>
   );
 };
@@ -21,9 +20,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 15,
   },
   input: {
-    width: "70%", // чтобы инпут занимал 70% от всего блока
+    width: "70%",
     padding: 10,
     borderStyle: "solid",
     borderBottomWidth: 2,
