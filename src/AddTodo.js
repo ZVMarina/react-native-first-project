@@ -22,6 +22,8 @@ export const AddTodo = ({ onSubmit }) => {
         onChangeText={setValue} // получаем текущее значение импута
         value={value} // значение для тектового инпута
         placeholder="Введите название дела..."
+        autoCorrect={false}
+        autoCapitalize='none'
       />
       <Button title="Добавить" onPress={pressHandler} />
     </View>
