@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button } from "react-native";
 
 export const AddTodo = ({ onSubmit }) => {
-  // при событии onPress будет вызываться функция pressHandler
+  const [value, setValue] = useState(""); // стейт
+
+  /* при нажатии на "Добавить" срабатывает слушатель onPress, 
+  который вызывает функцию pressHandler */
   const pressHandler = () => {
-    onSubmit("Test Todo");
+    if (value.trim()) {
+      onSubmit(value);
+      setValue("");
+    } else {
+      // error
+    }
   };
 
   return (
     <View style={styles.block}>
-      <TextInput style={styles.input} />
+      <TextInput
+        style={styles.input}
+        onChangeText={setValue} // получаем текущее значение импута
+        value={value} // значение для тектового инпута
+        placeholder="Введите название дела..."
+      />
       <Button title="Добавить" onPress={pressHandler} />
     </View>
   );
