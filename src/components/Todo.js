@@ -2,7 +2,6 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 export const Todo = ({ todo, onRemove }) => {
-  
   return (
     <TouchableOpacity
       activeOpacity={0.5}

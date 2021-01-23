@@ -11,7 +11,7 @@ export const AddTodo = ({ onSubmit }) => {
       onSubmit(value);
       setValue("");
     } else {
-      Alert.alert('Название дела не может быть пустым')
+      Alert.alert("Название дела не может быть пустым");
     }
   };
 
@@ -23,7 +23,7 @@ export const AddTodo = ({ onSubmit }) => {
         value={value} // значение для тектового инпута
         placeholder="Введите название дела..."
         autoCorrect={false}
-        autoCapitalize='none'
+        autoCapitalize="none"
       />
       <Button title="Добавить" onPress={pressHandler} />
     </View>
