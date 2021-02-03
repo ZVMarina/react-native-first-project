@@ -7,8 +7,8 @@ import { TodoScreen } from "./src/screens/TodoScreen";
 export default function App() {
   const [todoId, setTodoId] = useState(null);
   const [todos, setTodos] = useState([
-    { id: "1", title: "Выучить React Native" },
-    { id: "2", title: "Написать приложение" },
+ /*    { id: "1", title: "Выучить React Native" },
+    { id: "2", title: "Написать приложение" }, */
   ]);
 
   // возвращаем новый стейт, который состоит из нового элемента и копии прошлого
