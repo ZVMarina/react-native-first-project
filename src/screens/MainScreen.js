@@ -17,17 +17,12 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
   if (todos.length === 0) {
     content = (
       <View style={styles.imgWrap}>
-        {        <Image
-          style={styles.image}
-          source={require("../../assets/no-items.png")}
-        />}
-{/*         <Image
-          style={styles.image}
-          source={{
-            uri:
-              "https://www.inovex.de/blog/wp-content/uploads/2018/03/react-native.png",
-          }}
-        /> */}
+        {
+          <Image
+            style={styles.image}
+            source={require("../../assets/no-items.png")}
+          />
+        }
       </View>
     );
   }
@@ -48,8 +43,8 @@ const styles = StyleSheet.create({
     height: 300,
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     resizeMode: "contain",
   },
 });

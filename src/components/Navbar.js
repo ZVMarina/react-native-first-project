@@ -1,12 +1,13 @@
 import React from "react"; // импортируем react
-import { View, Text, StyleSheet } from "react-native"; // импортируем набор компонентов из react native
+import { View, StyleSheet } from "react-native"; // импортируем набор компонентов из react native
 import { THEME } from "../theme";
+import { AppTextBold } from "../components/ui/AppTextBold";
 
 export const Navbar = ({ title }) => {
   // экспортируем компонент Navbar, который будем использовать в шаблоне
   return (
     <View style={styles.navbar}>
-      <Text style={styles.text}>{title}</Text>
+      <AppTextBold>{title}</AppTextBold>
     </View>
   );
 };
@@ -18,9 +19,5 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     backgroundColor: THEME.MAIN_COLOR,
     paddingBottom: 10,
-  },
-  text: {
-    color: "white",
-    fontSize: 20,
   },
 });
