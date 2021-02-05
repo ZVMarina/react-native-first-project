@@ -1,82 +1,80 @@
-import React, { useState } from "react"; // с помощью useState будем создавать локальный стейт
-import { StyleSheet, View, Alert } from "react-native";
-import * as Font from "expo-font";
-import { AppLoading } from "expo";
+import React, { useState } from 'react'
+import { StyleSheet, View, Alert } from 'react-native'
+import * as Font from 'expo-font'
+import { AppLoading } from 'expo'
 
-import { Navbar } from "./src/components/Navbar";
-import { MainScreen } from "./src/screens/MainScreen";
-import { TodoScreen } from "./src/screens/TodoScreen";
+import { Navbar } from './src/components/Navbar'
+import { MainScreen } from './src/screens/MainScreen'
+import { TodoScreen } from './src/screens/TodoScreen'
+import { THEME } from './src/theme'
 
 async function loadApplication() {
   await Font.loadAsync({
-    "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
-  });
+    'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
+  })
 }
 
 export default function App() {
-  const [isReady, setIsReady] = useState(false);
-  const [todoId, setTodoId] = useState(null);
+  const [isReady, setIsReady] = useState(false)
+  const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
-    { id: "1", title: "Выучить React Native" },
-    { id: "2", title: "Написать приложение" },
-  ]);
+    { id: '1', title: 'Выучить React Native' }
+  ])
 
   if (!isReady) {
     return (
       <AppLoading
         startAsync={loadApplication}
-        onError={(err) => console.log(err)}
+        onError={err => console.log(err)}
         onFinish={() => setIsReady(true)}
       />
-    );
+    )
   }
 
-  // возвращаем новый стейт, который состоит из нового элемента и копии прошлого
-  const addTodo = (title) => {
-    setTodos((prev) => [
+  const addTodo = title => {
+    setTodos(prev => [
       ...prev,
       {
         id: Date.now().toString(),
-        title,
-      },
-    ]);
-  };
+        title
+      }
+    ])
+  }
 
-  // метод для удаления
-  const removeTodo = (id) => {
-    const todo = todos.find((t) => t.id === id);
+  const removeTodo = id => {
+    const todo = todos.find(t => t.id === id)
     Alert.alert(
-      "Удаление элемента",
+      'Удаление элемента',
       `Вы уверены, что хотите удалить "${todo.title}"?`,
       [
         {
-          text: "Отмена",
-          style: "cancel",
+          text: 'Отмена',
+          style: 'cancel'
         },
         {
-          text: "Удалить",
-          style: "destructive",
+          text: 'Удалить',
+          style: 'destructive',
           onPress: () => {
-            setTodoId(null);
-            setTodos((prev) => prev.filter((todo) => todo.id !== id));
-          },
-        },
+            setTodoId(null)
+            setTodos(prev => prev.filter(todo => todo.id !== id))
+          }
+        }
       ],
       { cancelable: false }
-    );
-  };
+    )
+  }
 
   const updateTodo = (id, title) => {
-    setTodos((old) =>
-      old.map((todo) => {
+    setTodos(old =>
+      old.map(todo => {
         if (todo.id === id) {
-          todo.title = title;
+          todo.title = title
         }
-        return todo;
+        return todo
       })
-    );
-  };
+    )
+  }
 
   let content = (
     <MainScreen
@@ -85,10 +83,10 @@ export default function App() {
       removeTodo={removeTodo}
       openTodo={setTodoId}
     />
-  );
+  )
 
   if (todoId) {
-    const selectedTodo = todos.find((todo) => todo.id === todoId);
+    const selectedTodo = todos.find(todo => todo.id === todoId)
     content = (
       <TodoScreen
         onRemove={removeTodo}
@@ -96,21 +94,20 @@ export default function App() {
         todo={selectedTodo}
         onSave={updateTodo}
       />
-    );
+    )
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      <Navbar title="Todo App" />
+    <View>
+      <Navbar title='Todo App!' />
       <View style={styles.container}>{content}</View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 30,
-    paddingVertical: 20,
-    flex: 1,
-  },
-});
+    paddingHorizontal: THEME.PADDING_HORIZONTAL,
+    paddingVertical: 20
+  }
+})
